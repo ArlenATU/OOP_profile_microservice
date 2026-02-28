@@ -17,10 +17,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
 
-    // Register user
+    // Register
     public User register(User user) {
 
         user.setCreatedAt(LocalDateTime.now());
+
         User savedUser = userRepository.save(user);
 
         Profile profile = Profile.builder()
@@ -32,6 +33,7 @@ public class UserService {
 
         profileRepository.save(profile);
 
+        savedUser.setPassword(null);
         return savedUser;
     }
 
@@ -42,24 +44,23 @@ public class UserService {
                 .map(user -> {
                     if (user.getPassword().equals(password)) {
                         return "Login successful";
-                    } else {
-                        return "Invalid password";
                     }
+                    return "Invalid password";
                 })
                 .orElse("User not found");
     }
 
-    // Get profile
     public Profile getProfile(Long userId) {
         return profileRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElse(null);
     }
 
-    // Update profile
     public Profile updateProfile(Long userId, Profile updatedProfile) {
 
         Profile profile = profileRepository.findByUserId(userId)
-                .orElseThrow(() -> new RuntimeException("Profile not found"));
+                .orElse(null);
+
+        if (profile == null) return null;
 
         profile.setBio(updatedProfile.getBio());
         profile.setLocation(updatedProfile.getLocation());
@@ -68,8 +69,9 @@ public class UserService {
         return profileRepository.save(profile);
     }
 
-    // Get all users (optional)
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+        users.forEach(user -> user.setPassword(null));
+        return users;
     }
 }

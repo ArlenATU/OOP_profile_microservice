@@ -3,12 +3,15 @@ package atu.ie.dands_project.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import jakarta.persistence.*;
+import lombok.*;
+
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Profile {
 
     @Id
@@ -18,6 +21,8 @@ public class Profile {
     private Long userId;
 
     private String bio;
+
     private String location;
+
     private String profilePictureUrl;
 }
