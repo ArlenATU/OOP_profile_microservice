@@ -13,7 +13,7 @@
     <aside class="sidebar">
 
         <div class="profile-mini">
-            <img src="https://i.pravatar.cc/100">
+            <img id="miniAvatar" src="https://i.pravatar.cc/100">
             <h3 id="username">User</h3>
             <span>View profile</span>
         </div>
@@ -21,10 +21,8 @@
         <nav>
             <a href="#">Home</a>
             <a href="#">Messages</a>
-            <a href="#">Bookings</a>
-            <a href="#">Achievements</a>
+            <a href="#">Blogs</a>
             <a href="#">Connections</a>
-            <a href="#">Group Sessions</a>
             <a href="#">More</a>
         </nav>
 
@@ -47,7 +45,7 @@
                     <label>Name</label>
                     <p id="nameText"></p>
                 </div>
-                <button onclick="editField('name')">Edit</button>
+                <button onclick="editName()">Edit</button>
             </div>
 
             <div class="setting">
@@ -55,7 +53,7 @@
                     <label>Avatar</label>
                     <img id="avatarPreview" class="avatar">
                 </div>
-                <button onclick="editField('avatarUrl')">Edit</button>
+                <button onclick="uploadAvatar()">Edit</button>
             </div>
 
             <div class="setting">
@@ -63,10 +61,12 @@
                     <label>Bio</label>
                     <p id="bioText"></p>
                 </div>
-                <button onclick="editField('bio')">Edit</button>
+                <button onclick="editBio()">Edit</button>
             </div>
 
         </div>
+
+        <input type="file" id="avatarInput" accept="image/*" style="display:none">
 
         <button class="saveBtn" onclick="saveProfile()">Save Changes</button>
 
