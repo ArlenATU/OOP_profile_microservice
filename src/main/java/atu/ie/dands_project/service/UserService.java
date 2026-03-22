@@ -24,20 +24,17 @@ public class UserService {
 
         User savedUser = userRepository.save(user);
 
-        // ✅ Generate fixed avatar ONCE
         String avatarUrl = "https://i.pravatar.cc/150?u=" + savedUser.getId();
 
-        Profile profile = Profile.builder()
-                .user(savedUser)
-                .name(user.getUsername())
-                .bio("")
-                .location("")
-                .profilePictureUrl(avatarUrl)
-                .build();
+        Profile profile = new Profile();
+        profile.setUser(savedUser);
+        profile.setName(user.getUsername());
+        profile.setBio("");
+        profile.setLocation("");
+        profile.setProfilePictureUrl(avatarUrl);
 
         profileRepository.save(profile);
 
-        savedUser.setPassword(null);
         return savedUser;
     }
 

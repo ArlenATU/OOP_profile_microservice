@@ -114,9 +114,14 @@ function saveProfile() {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(profileData)
+        body: JSON.stringify({
+            name: profileData.name,
+            bio: profileData.bio,
+            profilePictureUrl: profileData.profilePictureUrl
+        })
     })
-        .then(() => {
+        .then(res => {
+            if (!res.ok) throw new Error("Save failed");
             alert("Profile updated");
             location.reload();
         })
