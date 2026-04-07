@@ -1,6 +1,6 @@
-package atu.ie.dands_project.repository;
+package atu.ie.storyservice.repository;
 
-import atu.ie.dands_project.model.StarStory;
+import atu.ie.storyservice.model.StarStory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

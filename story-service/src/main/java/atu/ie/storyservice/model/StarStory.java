@@ -1,4 +1,4 @@
-package atu.ie.dands_project.model;
+package atu.ie.storyservice.model;
 
 import jakarta.persistence.*;
 import lombok.*;
